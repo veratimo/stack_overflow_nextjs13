@@ -43,7 +43,16 @@ const Theme = () => {
                     {themes.map((item) => (
                         <MenubarItem
                             key={item.value}
-                            onClick={() => {}}
+                            className='dark:focus:bg-dark-400 flex items-center gap-4 px-2.5 py-2'
+                            onClick={() => {
+                                setMode(item.value)
+
+                                if(item.value !== 'system') {
+                                    localStorage.theme = item.value
+                                } else {
+                                    localStorage.removeItem('theme');
+                                }
+                            }}
                         >
                             <Image 
                                 src={item.icon}
@@ -52,6 +61,7 @@ const Theme = () => {
                                 height={16}
                                 className={`${mode === item.value && 'active-theme'}`}
                             />
+                            <p className={`body-semibold text-light-500 ${mode === item.value ? 'text-primary-500' : 'text-dark100_light900'}`}>{item.label}</p>
                         </MenubarItem>
                     ))}
             </MenubarContent>
