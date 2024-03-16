@@ -1,11 +1,13 @@
 import HomeFilters from "@/components/home/HomeFilters";
 import Filter from "@/components/shared/Filter";
+import NoResult from "@/components/shared/NoResult";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
 import Link from "next/link";
 
- 
+const questions = [''] 
+
 export default function Home() {
   return (
     <>
@@ -34,6 +36,13 @@ export default function Home() {
         />
       </div>
       <HomeFilters />
+      <div className="mt-10 flex w-full flex-col gap-6">
+        {questions.length > 0 ?
+          questions.map((question) => ( 
+          'QuestionCard'
+        ))
+        : <NoResult />}
+      </div>
     </>
   )
 }
